@@ -16,7 +16,7 @@
 * `sudo docker run -d -p 8080:8080 rancher/server`
 
 # Persistent Storage: Setting up the NFS server
-* `sudo docker run -d --name nfs --restart=always --privileged --net=host -v /usr/<user>/nfs:/nfsshare -e SHARED_DIRECTORY=/nfsshare itsthenetwork/nfs-server-alpine:4` **NB: Update the command with the path to your NFS folder**
+* `sudo docker run -d --name nfs --restart=always --privileged --net=host -v /home/<user>/nfs:/nfsshare -e SHARED_DIRECTORY=/nfsshare itsthenetwork/nfs-server-alpine:4` **NB: Update the command with the path to your NFS folder**
 
 # NFS driver
 * Set the IP to the IP of the server running NFS **NB: Careful not to copy http:// into the ip field**
