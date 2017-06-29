@@ -28,7 +28,7 @@
 
 # Download kubectl
 * Download kubectl version 1.5.4 for your platform (macOS/Linux/Windows): https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
-* **If using RancherOS GA on each node run 
+* If using RancherOS GA on each node run 
 * `ros engine switch docker-1.12.6`
 * `system-docker restart docker`
 
