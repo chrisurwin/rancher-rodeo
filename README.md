@@ -16,7 +16,8 @@
 * `sudo docker run -d -p 8080:8080 rancher/server`
 
 # Persistent Storage: Setting up the NFS server
-* `sudo docker run -d --name nfs --restart=always --privileged --net=host -v /home/<user>/nfs:/nfsshare -e SHARED_DIRECTORY=/nfsshare itsthenetwork/nfs-server-alpine:4` **NB: Update the command with the path to your NFS folder**
+* `mkdir /home/rancher/nfs`
+* `sudo docker run -d --name nfs --restart=always --privileged --net=host -v /home/rancher/nfs:/nfsshare -e SHARED_DIRECTORY=/nfsshare itsthenetwork/nfs-server-alpine:4` **NB: Update the command with the path to your NFS folder**
 
 # NFS driver
 * Set the IP to the IP of the server running NFS **NB: Careful not to copy http:// into the ip field**
@@ -27,8 +28,9 @@
 * Upgrade Wordpress, add path `wp:/var/www/html` driver `rancher-nfs`
 
 # Download kubectl
-* Download kubectl version 1.5.4 for your platform (macOS/Linux/Windows): https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
-* If using RancherOS GA on each node run 
+* Determine version of kubectl needed by running `kubectl version` in CLI
+* Download kubectl version for your platform (macOS/Linux/Windows): https://kubernetes.io/docs/tasks/tools/install-kubectl/ 
+* If using RancherOS GA on cloud, run: (on Vagrant this is done automatically on `vagrant up`)
 * `sudo ros engine switch docker-1.12.6`
 * `sudo system-docker restart docker`
 
@@ -38,4 +40,6 @@
 * `kubectl apply -f class.yaml`
 
 # Deploy Wordpress from Helm
+* `helm init`
+* `helm repo update`
 * `helm install stable/wordpress --name wordpress --set persistence.enabled=true,persistence.storageClass=managed-nfs-storage,mariadb.persistence.storageClass=managed-nfs-storage`
