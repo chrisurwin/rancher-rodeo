@@ -11,6 +11,12 @@
 * https://www.vagrantup.com/ (For installing Vagrant)
 * https://www.mls-software.com/opensshd.html (Windows only, install OpenSSHD on Windows to ensure vagrant can ssh into nodes to do provisioning
 * https://github.com/chrisurwin/rancher-rodeo (Github repository containing all the necessary files to run your Vagrant setup)
+* Get started with:
+```
+$ git clone https://github.com/chrisurwin/rancher-rodeo && cd rancher-rodeo
+$ vagrant up
+$ vagrant ssh rancherserver
+```
 
 # Running Rancher
 * `sudo docker run -d -p 8080:8080 rancher/server`
