@@ -3,7 +3,7 @@
 # Prerequisites
 * Machine with 8GB RAM, SSD – Run 1 rancher server and 3 nodes (change the RAM size)
 * Machine with 16GB RAM NVME Disk – Run 1 Rancher Server and 3 VMS
-* 4 VMs running in Cloud (2GB each, ensure security group has UDP 500 & 4500, TCP 8080, 2049 & 80 open. Recommend all traffic on UDP and TCP allowed in local network)
+* 4 VMs running in Cloud (2GB each, ensure security group has UDP 500 & 4500, TCP 8080, 10255,10256, 2049 & 80 open. Recommend all traffic on UDP and TCP allowed in local network)
 
 **Only run Docker 1.12.6 if you want the K8s demo to work!**
 
