@@ -9,26 +9,26 @@
 require_relative 'vagrant_rancheros_guest_plugin.rb'
 $memory_size = 2048
 $number_of_nodes = 3
-$node_mem = "2048"
+$node_mem = "4096"
 $node_cpus = "2"
 $vb_gui = false
 
 Vagrant.configure(2) do |config|
 
-  config.vm.define "rancherserver" do |rancherserver|
-    rancherserver.vm.hostname = 'rancherserver'
-    rancherserver.vm.box= "chrisurwin/RancherOS"
-    rancherserver.vm.box_url = "chrisurwin/RancherOS"
-    rancherserver.vm.guest = :linux
+  config.vm.define "server" do |server|
+    server.vm.hostname = 'server'
+    server.vm.box= "chrisurwin/RancherOS"
+    server.vm.box_url = "chrisurwin/RancherOS"
+    server.vm.guest = :linux
 
-    rancherserver.vm.network :private_network, ip: "172.22.101.100",
+    server.vm.network :private_network, ip: "172.22.101.100",
       nic_type: "82545EM"
-    rancherserver.vm.provision "shell", inline: "ros engine switch docker-1.12.6"
-    rancherserver.vm.provision "shell", inline: "system-docker restart docker"
-    rancherserver.vm.provider :virtualbox do |v|
+    server.vm.provision "shell", inline: "ros engine switch docker-1.12.6"
+    server.vm.provision "shell", inline: "system-docker restart docker"
+    server.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", $memory_size]
-      v.customize ["modifyvm", :id, "--name", "rancherserver"]
+      v.customize ["modifyvm", :id, "--name", "server"]
     end
 
   end
