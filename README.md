@@ -19,19 +19,11 @@ $ vagrant ssh rancherserver
 ```
 
 # Running Rancher
-* `sudo docker run -d -p 8080:8080 rancher/server`
+* `sudo docker run -d -p 8080:8080 rancher/rancher`
 
 # Persistent Storage: Setting up the NFS server
 * `mkdir /home/rancher/nfs`
 * `sudo docker run -d --name nfs --restart=always --privileged --net=host -v /home/rancher/nfs:/nfsshare -e SHARED_DIRECTORY=/nfsshare itsthenetwork/nfs-server-alpine:4` **NB: Update the command with the path to your NFS folder**
-
-# NFS driver
-* Set the IP to the IP of the server running NFS **NB: Careful not to copy http:// into the ip field**
-* Mount point should be set to **/**
-
-# Wordpress persistent storage
-* Upgrade DB, add volume path `db:/var/lib/mysql` driver `rancher-nfs`
-* Upgrade Wordpress, add path `wp:/var/www/html` driver `rancher-nfs`
 
 # Download kubectl
 * Determine version of kubectl needed by running `kubectl version` in CLI
